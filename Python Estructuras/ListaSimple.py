@@ -47,7 +47,7 @@ class ListaSimple():
 			Temp=Temp.PSiguiente
 			Posicion +=1
 
-		Temp.setSiguiente(None)
+		Temp.setSiguiente(Temp.getSiguiente().getSiguiente())
 
 
 	def EliminarUltimo (self):

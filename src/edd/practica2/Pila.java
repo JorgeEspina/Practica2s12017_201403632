@@ -106,7 +106,7 @@ public class Pila extends javax.swing.JFrame {
                 .add("Datos", jTextField4.getText())
                 .build();
         String r = getString("Pila/Ingresar", formBody); 
-        System.out.println("Ingresado " + r);
+        //System.out.println("Ingresado " + r);
         jTextField4.setText("");
     try{       
                         String dotPath  = "C:\\Graficos EDD\\graphviz-2.38\\release\\bin\\dot.exe";

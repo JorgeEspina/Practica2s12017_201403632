@@ -165,8 +165,8 @@ public class Lista extends javax.swing.JFrame {
         jTextField1.setText("");
 
         String dotPath  = "C:\\Graficos\\graphviz-2.38\\release\\bin\\dot.exe";
-            String fileInputPath = "C:\\Graficos\\ListaSimple.txt";
-            String fileOutputPath  = "C:\\Graficos\\ListaSimple.png";	    
+            String fileInputPath = "C:\\Graficos EDD\\ListaSimple.txt";
+            String fileOutputPath  = "C:\\Graficos EDD\\ListaSimple.png";	    
 	try {
             
             String tParam = "-Tpng";

@@ -9,6 +9,6 @@ class NodoLista(object):
 	def getDato(self):
 		return self.__Dato
 
-	def setSiguiente(self,ValorVuelta):
-		self.__PSiguiente = ValorVuelta
+	def setSiguiente(self,nodo):
+		self.__PSiguiente = nodo
 

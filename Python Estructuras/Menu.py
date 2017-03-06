@@ -6,7 +6,12 @@ from flask import Flask, request, Response
 import Pila
 import Cola
 import ListaSimple
+import MatrizDispersa
 app = Flask("[EDD]Practica2")
+
+MD = MatrizDispersa
+MATRIZ = MD.MatrizDispersa()
+
 
 # Declaraciones de las clases
 Pil = Pila
@@ -69,6 +74,22 @@ def EliminarLS():
 def ImprimirLS():
 	Parametro = str(request.form['Datos'])
 	LS.ImprimirLista(Parametro)
+
+# Matriz Dispersa
+@app.route('/MatrizDispersa/Agregar',methods=['POST']) 
+def Agregar():
+	Parametro = str(request.form['Datos'])
+	MATRIZ.Split(Parametro)
+
+@app.route('/MatrizDispersa/BuscarLetra',methods=['POST']) 
+def BuscarL():
+	Parametro = str(request.form['Datos'])
+	return str(MATRIZ.DesplegarDatosL(Parametro))
+
+@app.route('/MatrizDispersa/BuscarDominio',methods=['POST']) 
+def BuscarDominio():
+	Parametro = str(request.form['Datos'])
+	return str(MATRIZ.DesplegarDatosD(Parametro))
 
 
 """@app.route("/")

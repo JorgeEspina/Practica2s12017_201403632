@@ -5,6 +5,16 @@
  */
 package edd.practica2;
 
+import com.squareup.okhttp.FormEncodingBuilder;
+import com.squareup.okhttp.Request;
+import com.squareup.okhttp.RequestBody;
+import com.squareup.okhttp.Response;
+import static edd.practica2.Pila.getString;
+import static edd.practica2.TestWebServer.webClient;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.logging.Level;
+
 /**
  *
  * @author Jorge Espina
@@ -50,10 +60,20 @@ public class Matriz extends javax.swing.JFrame {
         jLabel3.setText("Buscar por Letra:");
 
         jButton1.setText("Agregar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Eliminar");
 
         jButton3.setText("Buscar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/1488352349_gnome-mime-application-vnd.lotus-1-2-3.png"))); // NOI18N
 
@@ -62,6 +82,11 @@ public class Matriz extends javax.swing.JFrame {
         jLabel5.setText("Buscar por Dominio:");
 
         jButton4.setText("Buscar");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -142,6 +167,47 @@ public class Matriz extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        RequestBody formBody = new FormEncodingBuilder()
+                .add("Datos", jTextField1.getText())
+                .build();
+        String r = getString("MatrizDispersa/Agregar", formBody); 
+        //System.out.println("Ingresado " + r);
+        jTextField1.setText("");    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        RequestBody formBody = new FormEncodingBuilder()
+                .add("Datos",jTextField3.getText() )
+                .build();
+        String r = getString("MatrizDispersa/BuscarLetra", formBody); 
+         jTextField3.setText(""); 
+        System.out.println(r);
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+         RequestBody formBody = new FormEncodingBuilder()
+                .add("Datos",jTextField4.getText() )
+                .build();
+        String r = getString("MatrizDispersa/BuscarDominio", formBody);
+         jTextField4.setText(""); 
+        System.out.println(r);
+    }//GEN-LAST:event_jButton4ActionPerformed
+public static String getString(String metodo, RequestBody formBody) {
+
+        try {
+            URL url = new URL("http://127.0.0.1:5000/" + metodo);
+            Request request = new Request.Builder().url(url).post(formBody).build();
+            Response response = webClient.newCall(request).execute();//Aqui obtiene la respuesta en dado caso si hayas pues un return en python
+            String response_string = response.body().string();//y este seria el string de las respuesta
+            return response_string;
+        } catch (MalformedURLException ex) {
+            java.util.logging.Logger.getLogger(edd.practica2.TestWebServer.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            java.util.logging.Logger.getLogger(edd.practica2.TestWebServer.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+  
     /**
      * @param args the command line arguments
      */

@@ -110,7 +110,7 @@ public class Cola extends javax.swing.JFrame {
               .add("Datos", jTextField4.getText())
                 .build();
         String r = getString("Cola/Encolar", formBody); 
-        System.out.println("Ingresado " + r);
+        //System.out.println("Ingresado " + r);
         jTextField4.setText("");
           
                

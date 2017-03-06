@@ -31,7 +31,7 @@ class Pila():
 
 	def Grafico(self):
 		Archivo = open("C:\Graficos EDD\Pila.txt","w")
-		Archivo.write("digraph Pila_EDD{Flask rankkdir=LR \n")
+		Archivo.write("digraph Pila_EDD{ rankkdir=LR \n")
 		Temporal = self.Inicio
 		while Temporal!=None:
 			if Temporal == self.Inicio:
@@ -40,11 +40,7 @@ class Pila():
 				Archivo.write("->" + str(Temporal.Dato))
 			Temporal = Temporal.Siguiente
 		Archivo.write("}")
-		#	if Temporal == self.__Ultimo:
 		
-		#		Archivo.write("->" + (Temporal.Dato) + "}" )
-			
-		#subprocess.Popen("dot -Tpng C:\Graficos EDD\Pila.txt -o C:\Graficos EDD\Pila.png")
 
 
 
